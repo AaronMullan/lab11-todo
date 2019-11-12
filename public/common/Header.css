@@ -9,6 +9,8 @@ header {
     background: black;
     border-bottom: 3px dotted #c0ff00;
     width: 80%;
+    color: #ffbf00;
+    font-family: 'Press Start 2P', cursive, sans-serif;
 }
 
 /* img.logo {
