@@ -4,6 +4,7 @@ import Loading from '../common/Loading.js';
 import AddTodo from './AddTodo.js';
 import TodoList from './TodoList.js';
 import { getTodos, addTodo, updateTodo, removeTodo } from '../services/todo-api.js';
+// import { listenerCount } from 'cluster';
 
 class TodoApp extends Component {
 
@@ -14,12 +15,15 @@ class TodoApp extends Component {
         const main = dom.querySelector('main');
         const error = dom.querySelector('.error');
 
+        const todos = new TodoList ({ todos: []})
+
         const loading = new Loading({ loading: true });
         dom.appendChild(loading.renderDOM());
 
         // initial todo load:
         try {
-            
+            const tasks = await getTodos();
+            list.update({ todos: todos })
         }
         catch (err) {
             // display error...
@@ -37,7 +41,7 @@ class TodoApp extends Component {
                 <!-- show errors: -->
                 <p class="error"></p>
                 <main>
-                    <!-- add todo goes here -->
+                    HELLO<!-- add todo goes here -->
                     <!-- todo list goes here -->
                 </main>
             </div>
