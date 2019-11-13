@@ -1,10 +1,10 @@
 import Component from '../Component.js';
 import Header from '../common/Header.js';
 import Loading from '../common/Loading.js';
-// import AddTodo from './AddTodo.js';
+import addTodo from './AddTodo.js';
 import TodoList from './TodoList.js';
 import { getTodos } from '../services/todo-api.js';
-// import { listenerCount } from 'cluster';
+import TodoForm from './TodoForm.js';
 
 class TodoApp extends Component {
 
@@ -13,7 +13,7 @@ class TodoApp extends Component {
         dom.prepend(header.renderDOM());
         
         const main = dom.querySelector('main');
-        // const error = dom.querySelector('.error');
+        const error = dom.querySelector('.error');
 
         const loading = new Loading({ loading: true });
         dom.appendChild(loading.renderDOM());
@@ -22,6 +22,30 @@ class TodoApp extends Component {
         console.log(todoList, 'new');
         main.appendChild(todoList.renderDOM());
         
+        const todoForm = new TodoForm({
+            onAdd: async todo => {
+                loading.update({ loading: true });
+                error.textContent = '';
+
+                try {
+                    const saved = await addTodo(todo);
+
+                    const todos = this.state.todos;
+                    todos.push(saved);
+
+                    todoList.update({ todos });
+                }
+                catch (err) {
+                    error.textContent = err;
+                    throw err;
+                }
+                finally {
+                    loading.update ({ loading: false });
+                }
+            }
+        
+        });
+        main.appendChild(todoForm.renderDOM());
         // initial todo load:
         try {
             const todos = await getTodos();
@@ -43,9 +67,12 @@ class TodoApp extends Component {
                 <!-- show errors: -->
                 <p class="error"></p>
                 <main>
-                    HELLO<!-- add todo goes here -->
+                <div id="stuff">
+                
+                    <!-- add todo goes here -->
                     <!-- todo list goes here -->
                 </main>
+            </div>
             </div>
         `;
     }

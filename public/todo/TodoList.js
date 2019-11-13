@@ -1,6 +1,7 @@
 import Component from '../Component.js';
 import TodoItem from './TodoItem.js';
 
+
 class TodoList extends Component {
     
     onRender(list) {
@@ -12,10 +13,13 @@ class TodoList extends Component {
             const props = { todo };
             const todoItem = new TodoItem(props);
             const todoItemDOM = todoItem.renderDOM();
+            list.appendChild(todoItemDOM);
         });
     }
     renderHTML() {
         return /*html*/`
+       
+
             <ul></ul>
         `;
     }

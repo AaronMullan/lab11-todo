@@ -14,8 +14,8 @@ class TodoItem extends Component {
         const todo = this.props.todo;
 
         return /*html*/`
-            HI
-            <li>${todo.task}greetings</li>
+            
+            <li class= ${todo.complete}>${todo.task}</li>
         `;
     }
 }

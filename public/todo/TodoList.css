@@ -1,0 +1,9 @@
+.false{
+    color: red;
+}
+.true{
+    color: green;
+}
+input{
+    -webkit-appearance: none;
+}
