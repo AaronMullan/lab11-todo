@@ -42,7 +42,7 @@ app.get('/api/todos', async (req, res) => {
 
 app.post('/api/todos', async (req, res) => {
     const todo = req.body;
-
+    console.log(todo, 'line 45');
     try {
         const result = await client.query(`
         INSERT INTO todos (task, complete)

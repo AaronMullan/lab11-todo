@@ -10,11 +10,13 @@ class TodoForm extends Component {
         form.addEventListener('submit', async event => {
             event.preventDefault();
 
+            const formData = new FormData(form);
+
             const todo = {
-                task: input.value,
+                task: formData.get('addtodo'),
                 complete: false
             };
-
+            
             try {
                 await onAdd(todo);
                 form.reset();
@@ -24,13 +26,14 @@ class TodoForm extends Component {
                 // random comment
             }
         });
+
     }
 
     renderHTML() {
         return /*html*/`
             <section class="type-form-section">
                 <form class="type-form">
-                    <input name="type" required>
+                    <input name="addtodo" required>
                     <button>Add</button>
                 </form>
             </section>
