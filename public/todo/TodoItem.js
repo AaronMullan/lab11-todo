@@ -15,7 +15,7 @@ class TodoItem extends Component {
 
         return /*html*/`
             HI
-            <p>${todo.task}</p>
+            <li>${todo.task}greetings</li>
         `;
     }
 }

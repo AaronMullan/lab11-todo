@@ -1,9 +1,9 @@
 import Component from '../Component.js';
 import Header from '../common/Header.js';
 import Loading from '../common/Loading.js';
-import AddTodo from './AddTodo.js';
+// import AddTodo from './AddTodo.js';
 import TodoList from './TodoList.js';
-import { getTodos, addTodo, updateTodo, removeTodo } from '../services/todo-api.js';
+import { getTodos } from '../services/todo-api.js';
 // import { listenerCount } from 'cluster';
 
 class TodoApp extends Component {
@@ -13,17 +13,19 @@ class TodoApp extends Component {
         dom.prepend(header.renderDOM());
         
         const main = dom.querySelector('main');
-        const error = dom.querySelector('.error');
-
-        const todos = new TodoList ({ todos: []})
+        // const error = dom.querySelector('.error');
 
         const loading = new Loading({ loading: true });
         dom.appendChild(loading.renderDOM());
-
+        
+        const todoList = new TodoList({ todos: [] });
+        console.log(todoList, 'new');
+        main.appendChild(todoList.renderDOM());
+        
         // initial todo load:
         try {
-            const tasks = await getTodos();
-            list.update({ todos: todos })
+            const todos = await getTodos();
+            todoList.update({ todos: todos });
         }
         catch (err) {
             // display error...
@@ -31,9 +33,9 @@ class TodoApp extends Component {
         finally {
             loading.update({ loading: false });
         }
-
+        
     }
-
+    
     renderHTML() {
         return /*html*/`
             <div>

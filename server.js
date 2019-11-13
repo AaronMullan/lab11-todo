@@ -24,13 +24,9 @@ app.get('/api/todos', async (req, res) => {
 
     try {
         const result = await client.query(`
-        SELECT 
-        todos.id,
-        todos.task,
-        todos.complete
-        FROM todos;
+        SELECT * FROM todos;
         `);
-
+        console.log(result);
         res.json(result.rows);
         
     }
