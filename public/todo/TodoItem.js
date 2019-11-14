@@ -1,5 +1,6 @@
 import Component from '../Component.js';
 
+
 class TodoItem extends Component {
 
     onRender(dom) {
@@ -7,7 +8,7 @@ class TodoItem extends Component {
         const onUpdate = this.props.onUpdate;
         const onRemove = this.props.onRemove;
 
-        
+       push origin devicePixelRatio
     }
 
     renderHTML() {
