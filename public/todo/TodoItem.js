@@ -15,7 +15,7 @@ class TodoItem extends Component {
 
         return /*html*/`
             
-            <li class= ${todo.complete}>${todo.task}</li>
+            <li class= ${todo.complete}>${todo.task} <button id="done">done</button></li>
         `;
     }
 }

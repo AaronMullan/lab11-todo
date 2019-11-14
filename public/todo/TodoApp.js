@@ -1,7 +1,7 @@
 import Component from '../Component.js';
 import Header from '../common/Header.js';
 import Loading from '../common/Loading.js';
-import AddTodo from './AddTodo.js';
+// import AddTodo from './AddTodo.js';
 import TodoList from './TodoList.js';
 import { getTodos, addTodo } from '../services/todo-api.js';
 import TodoForm from './TodoForm.js';
@@ -30,9 +30,10 @@ class TodoApp extends Component {
 
                 try {
                     const saved = await addTodo(todo);
-                    console.log(saved);
+                    // console.log(saved);
+                    console.log(this.state);
                     const todos = this.state.todos;
-                    console.log(todos, '36');
+                    // console.log(todos, '36');
                     todos.push(saved);
 
                     todoList.update({ todos });
@@ -51,6 +52,7 @@ class TodoApp extends Component {
         // initial todo load:
         try {
             const todos = await getTodos();
+            this.state.todos = todos;
             todoList.update({ todos: todos });
         }
         catch (err) {

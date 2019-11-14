@@ -5,7 +5,7 @@ class TodoForm extends Component {
     onRender(dom) {
         const onAdd = this.props.onAdd;
         const form = dom.querySelector('form');
-        const input = dom.querySelector('input[name=todo]');
+     
 
         form.addEventListener('submit', async event => {
             event.preventDefault();
@@ -16,7 +16,7 @@ class TodoForm extends Component {
                 task: formData.get('addtodo'),
                 complete: false
             };
-            
+            console.log(todo);
             try {
                 await onAdd(todo);
                 form.reset();
@@ -33,7 +33,7 @@ class TodoForm extends Component {
         return /*html*/`
             <section class="type-form-section">
                 <form class="type-form">
-                    <input name="addtodo" required>
+                    <input name="addtodo" type="text" required>
                     <button>Add</button>
                 </form>
             </section>
