@@ -1,23 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
 
 header {
     display: flex;
     align-items: center;
+    align-content: center;
     padding: 10px;
     justify-content: space-around;
-    background: #f8f3f3;
-    border-bottom: 1px solid orange;
+    background: black;
+    border-bottom: 3px dotted #c0ff00;
+    width: 80%;
+    color: #ffbf00;
+    font-family: 'Press Start 2P', cursive, sans-serif;
 }
 
-img.logo {
+/* img.logo {
     height: 100px;
-}
+} */
 
 h1 {
-    font-size: 2em;
+    font-size: 1.2em;
     font-family: 'Oswald';
     font-weight: bold;
     margin: 0 20px;
     flex-grow: 1;
+    color: #ffbf00;
+    font-family: 'Press Start 2P', cursive, sans-serif;
 }
 
 nav a {

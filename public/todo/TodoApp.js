@@ -1,9 +1,11 @@
 import Component from '../Component.js';
 import Header from '../common/Header.js';
 import Loading from '../common/Loading.js';
-import AddTodo from './AddTodo.js';
+// import AddTodo from './AddTodo.js';
 import TodoList from './TodoList.js';
-import { getTodos, addTodo, updateTodo, removeTodo } from '../services/todo-api.js';
+import { getTodos, addTodo } from '../services/todo-api.js';
+import TodoForm from './TodoForm.js';
+
 
 class TodoApp extends Component {
 
@@ -16,10 +18,42 @@ class TodoApp extends Component {
 
         const loading = new Loading({ loading: true });
         dom.appendChild(loading.renderDOM());
+        
+        const todoList = new TodoList({ todos: [] });
+        console.log(todoList, 'new');
+        main.appendChild(todoList.renderDOM());
+        
+        const todoForm = new TodoForm({
+            onAdd: async todo => {
+                loading.update({ loading: true });
+                error.textContent = '';
 
+                try {
+                    const saved = await addTodo(todo);
+                    // console.log(saved);
+                    console.log(this.state);
+                    const todos = this.state.todos;
+                    // console.log(todos, '36');
+                    todos.push(saved);
+
+                    todoList.update({ todos });
+                }
+                catch (err) {
+                    error.textContent = err;
+                    throw err;
+                }
+                finally {
+                    loading.update ({ loading: false });
+                }
+            }
+        
+        });
+        main.appendChild(todoForm.renderDOM());
         // initial todo load:
         try {
-            
+            const todos = await getTodos();
+            this.state.todos = todos;
+            todoList.update({ todos: todos });
         }
         catch (err) {
             // display error...
@@ -27,9 +61,9 @@ class TodoApp extends Component {
         finally {
             loading.update({ loading: false });
         }
-
+        
     }
-
+    
     renderHTML() {
         return /*html*/`
             <div>
@@ -37,9 +71,12 @@ class TodoApp extends Component {
                 <!-- show errors: -->
                 <p class="error"></p>
                 <main>
+                <div id="stuff">
+                
                     <!-- add todo goes here -->
                     <!-- todo list goes here -->
                 </main>
+            </div>
             </div>
         `;
     }

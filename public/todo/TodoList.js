@@ -1,6 +1,7 @@
 import Component from '../Component.js';
 import TodoItem from './TodoItem.js';
 
+
 class TodoList extends Component {
     
     onRender(list) {
@@ -8,11 +9,19 @@ class TodoList extends Component {
         const onUpdate = this.props.onUpdate;
         const onRemove = this.props.onRemove;
 
+        todos.forEach(todo => {
+            // const props = { todo };
+            const todoItem = new TodoItem({ todo, onUpdate, onRemove });
+            const todoItemDOM = todoItem.renderDOM();
+            list.appendChild(todoItemDOM);
+        });
         
     }
     renderHTML() {
         return /*html*/`
-            
+       
+
+            <ul></ul>
         `;
     }
 }

@@ -1,12 +1,17 @@
-@import url('https://fonts.googleapis.com/css?family=Heebo|Oswald');
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
 
 body {
-    font-family: 'Heebo', "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif;
-    background: rgb(236, 229, 238);
+    font-family: 'Press Start 2P', cursive, sans-serif;
+    color: #ffbf00;
+    background: rgb(0, 0, 0);
     line-height: 1.5em;
 }
 
 * {
     box-sizing: border-box;
+}
+a {
+    text-decoration: underline;
+    color: #ffbf00;
 }
 
